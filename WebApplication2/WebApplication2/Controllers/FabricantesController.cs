@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication2.Models;
@@ -38,6 +39,38 @@ namespace WebApplication2.Controllers
             //context.Fabricantes.Add(fabricante);
             //context.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: Fabricantes/Edit/5
+        [HttpGet]
+        public ActionResult Edit(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Fabricante fabricante = fabricantes.Where(m => m.FabricanteId == id).First();
+            if (fabricante == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fabricante);
+        }
+        // POST: Fabricantes/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Fabricante fabricante)
+        {
+            if (ModelState.IsValid)
+            {
+                fabricantes.Remove(
+            fabricantes.Where(c => c.FabricanteId == fabricante.FabricanteId).First());
+                fabricantes.Add(fabricante);
+                //context.Entry(fabricante).State = EntityState.Modified;
+                //context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(fabricante);
         }
     }
 }
