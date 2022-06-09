@@ -72,5 +72,45 @@ namespace WebApplication2.Controllers
             }
             return View(fabricante);
         }
+        // GET: Fabricantes/Details/5
+        public ActionResult Details(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Fabricante fabricante = fabricantes.Where(c => c.FabricanteId == id).First();
+            if (fabricante == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fabricante);
+        }
+        // GET: Fabricantes/Delete/5
+         public ActionResult Delete(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Fabricante fabricante = fabricantes.Where(c => c.FabricanteId == id).First();
+            if (fabricante == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fabricante);
+        }
+        // POST: Fabricantes/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(long id)
+        {
+            Fabricante fabricante = fabricantes.Where(c => c.FabricanteId == c.FabricanteId).First();
+            fabricantes.Remove(
+            fabricantes.Where(c => c.FabricanteId == fabricante.FabricanteId).First());
+            //context.Fabricantes.Remove(fabricante);
+            //context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
