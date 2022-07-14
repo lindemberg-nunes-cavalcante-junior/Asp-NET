@@ -4,6 +4,12 @@
     ViewBag.Title = "Listagem de FABRICANTES";
 }
 
+@if (@TempData["Message"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Message"]
+    </div>
+}
 <!DOCTYPE html>
 
 <html>
@@ -11,7 +17,7 @@
 
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
-    
+
 </head>
 <body>
     <div class="panel panel-primary">
@@ -64,6 +70,13 @@
         <script type="text/javascript">
             $('.table').dataTable({
                 "order": [[1, "asc"]]
+            });
+
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('li').removeClass("active");
+                $('#liFabricantes').addClass("active");
             });
         </script>
     }
