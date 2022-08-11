@@ -16,7 +16,7 @@
                 <span class="input-group-addon">
                     <i class="glyphicon glyphicon-ice-lolly"></i>
                 </span>
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" }})
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
             </div>
         </div>
     </div>
@@ -25,3 +25,4 @@
         @Html.ActionLink("Retornar para a listagem", "Index", null, new { @class = "btn btn-info" })
     </div>
 </div>
+@Html.Partial("~/Views/Produtos/_PorFabricante.cshtml", Model.Produtos.ToList())
