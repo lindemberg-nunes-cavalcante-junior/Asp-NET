@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
-using WebApplication2.Models;
 using System.Net;
 using Modelo.Cadastro;
+using Persistencia.Contexts;
 
 namespace WebApplication2.Controllers
 {

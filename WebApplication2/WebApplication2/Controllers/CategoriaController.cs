@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication2.Models;
 using System.Data.Entity;
 using System.Net;
 using Modelo.Tabelas;
+using Persistencia.Contexts;
 
 namespace WebApplication2.Controllers
 {
