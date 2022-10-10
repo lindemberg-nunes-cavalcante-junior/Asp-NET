@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using WebApplication2.Models;
 using System.Data.Entity;
 using System.Net;
+using Modelo.Tabelas;
 
 namespace WebApplication2.Controllers
 {

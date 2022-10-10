@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modelo.Cadastro;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;

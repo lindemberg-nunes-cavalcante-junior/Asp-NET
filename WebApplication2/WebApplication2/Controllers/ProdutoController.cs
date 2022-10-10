@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using WebApplication2.Models;
 using System.Net;
+using Modelo.Cadastro;
 
 namespace WebApplication2.Controllers
 {
