@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Serviço.Cadastros
 {
-    public class ProdutoServico
+    public class CategoriaServico
     {
         private ProdutoDAL produtoDAL = new ProdutoDAL();
         public IQueryable<Produto> ObterProdutosClassificadosPorNome()

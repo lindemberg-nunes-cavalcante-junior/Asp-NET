@@ -6,13 +6,15 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using System.Net;
 using Modelo.Tabelas;
-using Persistencia.Contexts;
+using Serviço.Cadastros;
+using Serviço.Tabelas;
 
 namespace WebApplication2.Controllers
 {
     public class CategoriaController : Controller
     {
-        private EFContext context = new EFContext();
+        private CategoriaServiço servicoCategoria = new CategoriaServiço();
+        //private EFContext context = new EFContext();
         /* private static IList<Categoria> categorias = new List<Categoria>()
  {
  new Categoria() { CategoriaId = 1, Nome = "Notebooks"},
@@ -25,7 +27,7 @@ namespace WebApplication2.Controllers
         public ActionResult Index()
         {
             //return View(categorias);
-            return View(context.Categorias.OrderBy(c => c.Nome));
+            return View(servicoCategoria.ObterCategoriasClassificadasPorNome());
         }
         // GET: Categorias
         public ActionResult Create()
@@ -39,8 +41,9 @@ namespace WebApplication2.Controllers
         {
             /*categorias.Add(categoria);
             categoria.CategoriaId = categorias.Select(m => m.CategoriaId).Max() + 1;*/
-            context.Categorias.Add(categoria);
-            context.SaveChanges();
+            //context.Categorias.Add(categoria);
+            //context.SaveChanges();
+            servicoCategoria.GravarCategoria(categoria);
             return RedirectToAction("Index");
         }
     
@@ -50,7 +53,8 @@ namespace WebApplication2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = context.Categorias.Find(id);
+            //Categoria categoria = context.Categorias.Find(id);
+            Categoria categoria = servicoCategoria.ObterCategoriaPorId((long)id);
             if (categoria == null)
             {
                 return HttpNotFound();
@@ -64,8 +68,9 @@ namespace WebApplication2.Controllers
         {
             if (ModelState.IsValid)
             {
-                context.Entry(categoria).State = EntityState.Modified;
-                context.SaveChanges();
+                //context.Entry(categoria).State = EntityState.Modified;
+                // context.SaveChanges();
+                servicoCategoria.GravarCategoria(categoria);
                 return RedirectToAction("Index");
             }
             return View(categoria);
@@ -82,7 +87,8 @@ namespace WebApplication2.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Categoria categoria = context.Categorias.Find(id);
-            Categoria categoria= context.Categorias.Where(f => f.CategoriaId == id).Include("Produtos.Fabricante").First();
+            //Categoria categoria= context.Categorias.Where(f => f.CategoriaId == id).Include("Produtos.Fabricante").First();
+            Categoria categoria = servicoCategoria.ObterCategoriaPorId((long)id);
             if (categoria == null)
             {
                 return HttpNotFound();
@@ -95,7 +101,8 @@ namespace WebApplication2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = context.Categorias.Find(id);
+            //Categoria categoria = context.Categorias.Find(id);
+            Categoria categoria = servicoCategoria.ObterCategoriaPorId((long)id);
             if(categoria == null)
             {
                 return HttpNotFound();
@@ -107,9 +114,11 @@ namespace WebApplication2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Categoria categoria = context.Categorias.Find(id);
-            context.Categorias.Remove(categoria);
-            context.SaveChanges();
+            //Categoria categoria = context.Categorias.Find(id);
+            Categoria categoria = servicoCategoria.ObterCategoriaPorId((long)id);
+            //context.Categorias.Remove(categoria);
+            //context.SaveChanges();
+            servicoCategoria.EliminarCategoriaPorId(id);
             TempData["Message"] = "Categoria " + categoria.Nome.ToUpper() + " foi removida";
             return RedirectToAction("Index");
             /*categorias.Remove(

@@ -14,9 +14,22 @@ namespace WebApplication2.Controllers
     public class ProdutosController : Controller
     {
         //private EFContext context = new EFContext();
-        private ProdutoServico produtoServico = new ProdutoServico();
+        private CategoriaServico produtoServico = new CategoriaServico();
         private CategoriaServiço categoriaServico = new CategoriaServiço();
         private FabricanteServico fabricanteServico = new FabricanteServico();
+        private ActionResult ObterVisaoProdutoPorId(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Produto produto = produtoServico.ObterProdutoPorId((long)id);
+            if (produto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(produto);
+        }
         // GET: Produtos
         public ActionResult Index()
         {
@@ -40,8 +53,10 @@ namespace WebApplication2.Controllers
             try
             {
                 // TODO: Add insert logic here
-                context.Produtos.Add(produto);
-                context.SaveChanges();
+                produtoServico.GravarProduto(produto);
+                //context.Produtos.Add(produto);
+
+                //context.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -52,12 +67,13 @@ namespace WebApplication2.Controllers
         // GET: Produtos/Edit/5
         public ActionResult Edit(long? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             // Produto produto = context.Produtos.Find(id);
-            var produto = produtoServico.ObterProdutosClassificadosPorNome();
+             var produto = produtoServico.ObterProdutoPorId((long) id);
             if (produto == null)
             {
                 return HttpNotFound();
@@ -73,8 +89,9 @@ namespace WebApplication2.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    context.Entry(produto).State = EntityState.Modified;
-                    context.SaveChanges();
+                    //context.Entry(produto).State = EntityState.Modified;
+                    produtoServico.GravarProduto(produto);
+                    //context.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 return View(produto);
@@ -92,12 +109,12 @@ namespace WebApplication2.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Produto produto = context.Produtos.Where(p => p.ProdutoId == id).Include(c => c.Categoria).Include(f => f.Fabricante).First();
-            var produto = produtoServico.ObterProdutoPorId((long) id).Include(c => c.Categoria)
+            var produto = produtoServico.ObterProdutoPorId((long)id);
             if (produto == null)
             {
                 return HttpNotFound();
             }
-            return View(produto);
+            return ObterVisaoProdutoPorId(id);
         }
         public ActionResult Delete(long? id)
         {
@@ -119,9 +136,9 @@ namespace WebApplication2.Controllers
         {
             try
             {
-                Produto produto = produtoServico.ObterProdutoPorId((long)id);
-                context.Produtos.Remove(produto);
-                context.SaveChanges();
+                //Produto produto = produtoServico.ObterProdutoPorId((long)id);
+                Produto produto = produtoServico.EliminarProdutoPorId((long) id);
+                //context.SaveChanges();
                 TempData["Message"] = "Produto " + produto.Nome.ToUpper() + " foi removido";
                 return RedirectToAction("Index");
             }
