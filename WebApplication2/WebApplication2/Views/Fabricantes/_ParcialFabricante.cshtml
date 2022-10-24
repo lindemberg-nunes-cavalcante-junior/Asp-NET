@@ -1,5 +1,5 @@
-﻿@model Modelo.Tabelas.Categoria
-<div class="panel-body">
+﻿@model Modelo.Cadastro.Fabricante
+
     <div class="form-group">
         @Html.LabelFor(model => model.Nome)
         <br />
@@ -10,4 +10,4 @@
             @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
         </div>
     </div>
-</div>
+

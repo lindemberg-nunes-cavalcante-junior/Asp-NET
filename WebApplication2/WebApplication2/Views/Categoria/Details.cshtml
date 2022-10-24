@@ -8,7 +8,9 @@
     <div class="panel-heading">
         Visualizando detalhes de uma Categoria
     </div>
-    @Html.Partial("~/Views/Fabricantes/_ParcialFabricante", Model.Produtos.ToList())
+    <div class="panel-body">
+        @Html.Partial("~/Views/Categoria/_ParcialCategoria.cshtml", Model)
+    </div>
     <div class="panel-footer panel-info">
         @Html.ActionLink("Alterar", "Edit", new { id = Model.CategoriaId }, new { @class = "btn btn-info" })
         @Html.ActionLink("Retornar para a listagem", "Index", null, new { @class = "btn btn-info" })

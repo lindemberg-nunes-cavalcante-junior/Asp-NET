@@ -8,7 +8,9 @@
     <div class="panel-heading">
         Dados da Categoria a ser removida
     </div>
-    @Html.Partial("~/Views/Fabricantes/_ParcialFabricante", Model.Produtos.ToList())
+    <div class="panel-body">
+        @Html.Partial("~/Views/Categoria/_ParcialCategoria.cshtml", Model)
+    </div>
     <div class="panel-footer panel-info">
         @using (Html.BeginForm())
         {
