@@ -235,6 +235,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Fabricantes\_ParcialFabricante.cshtml" />
     <Content Include="Views\Categoria\_ParcialCategoria.cshtml" />
+    <Content Include="Views\Produtos\_PartialEditContentPanel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -61,7 +61,9 @@ namespace WebApplication2.Controllers
             }
             catch
             {
-                return View(produto);
+                ViewBag.CategoriaId = new SelectList(categoriaServico.ObterCategoriasClassificadasPorNome(), "CategoriaId", "Nome");
+                ViewBag.FabricanteId = new SelectList(fabricanteServico.ObterFabricantesClassificadosPorNome(), "FabricanteId", "Nome");
+                return View();
             }
         }
         // GET: Produtos/Edit/5
