@@ -10,6 +10,8 @@ namespace Modelo.Cadastro
 {
     public class Produto
     {
+        public string LogotipoMimeType { get; set; }
+        public byte[] Logotipo { get; set; }
         [DisplayName("Código")]
         public long? ProdutoId { get; set; }
         [StringLength(100, ErrorMessage = "O nome do produto precisa ter no mínimo 10 caracteres", MinimumLength = 10)]
