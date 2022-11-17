@@ -10,6 +10,8 @@ namespace Modelo.Cadastro
 {
     public class Produto
     {
+        public string NomeArquivo { get; set; }
+        public long TamanhoArquivo { get; set; }
         public string LogotipoMimeType { get; set; }
         public byte[] Logotipo { get; set; }
         [DisplayName("Código")]

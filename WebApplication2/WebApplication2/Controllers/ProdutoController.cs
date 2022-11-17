@@ -8,6 +8,7 @@ using System.Net;
 using Modelo.Cadastro;
 using Serviço.Cadastros;
 using Serviço.Tabelas;
+using System.IO;
 
 namespace WebApplication2.Controllers
 {
@@ -29,6 +30,15 @@ namespace WebApplication2.Controllers
                 return HttpNotFound();
             }
             return View(produto);
+        }
+        public FileContentResult GetLogotipo(long id)
+        {
+            Produto produto = produtoServico.ObterProdutoPorId(id);
+            if (produto != null)
+            {
+                return File(produto.Logotipo, produto.LogotipoMimeType);
+            }
+            return null;
         }
         // GET: Produtos
         public ActionResult Index()
@@ -124,6 +134,8 @@ namespace WebApplication2.Controllers
                     {
                         produto.LogotipoMimeType = logotipo.ContentType;
                         produto.Logotipo = SetLogotipo(logotipo);
+                        produto.NomeArquivo = logotipo.FileName;
+                        produto.TamanhoArquivo = logotipo.ContentLength;
                     }
                     produtoServico.GravarProduto(produto);
                     return RedirectToAction("Index");
@@ -137,7 +149,14 @@ namespace WebApplication2.Controllers
                 return View(produto);
             }
         }
-
+        public ActionResult DownloadArquivo(long id)
+        {
+            Produto produto = produtoServico.ObterProdutoPorId(id);
+            FileStream fileStream = new FileStream(Server.MapPath("~/App_Data/" + produto.NomeArquivo), FileMode.Create,FileAccess.Write);
+            fileStream.Write(produto.Logotipo, 0,Convert.ToInt32(produto.TamanhoArquivo));
+            fileStream.Close();
+            return File(fileStream.Name, produto.LogotipoMimeType, produto.NomeArquivo);
+        }
         [HttpPost]
         public ActionResult Edit(Produto produto, HttpPostedFileBase logotipo = null, string chkRemoverImagem = null)
         {

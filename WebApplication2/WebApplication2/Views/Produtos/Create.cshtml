@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Registrando um NOVO PRODUTO";
 }
-@using (Html.BeginForm())
+@using ((Html.BeginForm("Edit", "Produtos", FormMethod.Post, new{enctype = "multipart/form-data"})))
 {
     @Html.AntiForgeryToken()
     <div class="panel panel-primary">
