@@ -16,6 +16,14 @@ namespace Persistencia.DAL.Cadastros
             return context.Produtos.Include(c => c.Categoria).Include(f => f.Fabricante).
             OrderBy(n => n.Nome);
         }
+        public IQueryable<Produto> ObterUltimosProdutos()
+        {
+            return context.Produtos.Where(p => p.DataCadastro <= p.DataCadastro.AddDays(30));
+        }
+        public IQueryable<Produto> ObterDestaques()
+        {
+            return context.Produtos.Where(p => p.Destaque == true);
+        }
         public Produto ObterProdutoPorId(long id)
         {
             return context.Produtos.Where(p => p.ProdutoId == id).Include(c => c.Categoria).

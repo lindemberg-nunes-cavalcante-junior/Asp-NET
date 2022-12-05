@@ -11,6 +11,15 @@ namespace Serviço.Cadastros
     public class CategoriaServico
     {
         private ProdutoDAL produtoDAL = new ProdutoDAL();
+
+        public IQueryable<Produto> ObterDestaques()
+        {
+            return produtoDAL.ObterDestaques();
+        }
+        public IQueryable<Produto> ObterUltimosProdutos()
+        {
+            return produtoDAL.ObterUltimosProdutos();
+        }
         public IQueryable<Produto> ObterProdutosClassificadosPorNome()
         {
             return produtoDAL.ObterProdutosClassificadosPorNome();

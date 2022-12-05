@@ -10,6 +10,7 @@ namespace Modelo.Cadastro
 {
     public class Produto
     {
+        public bool Destaque { get; set; }
         public string NomeArquivo { get; set; }
         public long TamanhoArquivo { get; set; }
         public string LogotipoMimeType { get; set; }
@@ -22,7 +23,7 @@ namespace Modelo.Cadastro
         [DataType(DataType.Date)]
         [DisplayName("Data de Cadastro")]
         [Required(ErrorMessage = "Informe a data de cadastro do produto")]
-        public DateTime? DataCadastro { get; set; }
+        public DateTime DataCadastro { get; set; }
         [DisplayName("Categoria")]
         public long? CategoriaId { get; set; }
         [DisplayName("Fabricante")]
