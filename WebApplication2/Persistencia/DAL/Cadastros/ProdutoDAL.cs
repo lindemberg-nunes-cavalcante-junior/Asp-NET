@@ -18,7 +18,9 @@ namespace Persistencia.DAL.Cadastros
         }
         public IQueryable<Produto> ObterUltimosProdutos()
         {
-            return context.Produtos.Where(p => p.DataCadastro <= p.DataCadastro.AddDays(30));
+            DateTime dia =  DateTime.Today.AddDays(-30);
+            return context.Produtos.Include(c => c.Categoria).Include(f => f.Fabricante).Where(p => p.DataCadastro >= dia).
+            OrderBy(n => n.Nome); 
         }
         public IQueryable<Produto> ObterDestaques()
         {

@@ -1,0 +1,80 @@
+﻿@model WebApplication2.Models.HomeClass
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>HomeClass</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+    <h5>Destaques</h5>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Código
+                    </th>
+                    <th>
+                        Produto
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.listaprodutoDestaque)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProdutoId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <h5>Lançamentos</h5>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Código
+                    </th>
+                    <th>
+                        Produto
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.listaprodutoLançamentos)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProdutoId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
