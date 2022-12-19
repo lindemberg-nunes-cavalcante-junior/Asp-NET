@@ -9,7 +9,7 @@ using Modelo.Tabelas;
 using Serviço.Cadastros;
 using Serviço.Tabelas;
 
-namespace WebApplication2.Controllers
+namespace WebApplication2.Areas.Tabelas.Controllers
 {
     public class CategoriaController : Controller
     {

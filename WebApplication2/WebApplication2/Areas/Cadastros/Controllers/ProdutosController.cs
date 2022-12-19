@@ -10,7 +10,7 @@ using Serviço.Cadastros;
 using Serviço.Tabelas;
 using System.IO;
 
-namespace WebApplication2.Controllers
+namespace WebApplication.Areas.Cadastros.Controllers
 {
     public class ProdutosController : Controller
     {
@@ -87,19 +87,19 @@ namespace WebApplication2.Controllers
         // GET: Produtos/Edit/5
         public ActionResult Edit(long? id)
         {
-            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             // Produto produto = context.Produtos.Find(id);
-             var produto = produtoServico.ObterProdutoPorId((long) id);
+            var produto = produtoServico.ObterProdutoPorId((long)id);
             if (produto == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoriaId = new SelectList(categoriaServico.ObterCategoriasClassificadasPorNome(), "CategoriaId","Nome", produto.CategoriaId);
-            ViewBag.FabricanteId = new SelectList(fabricanteServico.ObterFabricantesClassificadosPorNome(), "FabricanteId","Nome", produto.FabricanteId);
+            ViewBag.CategoriaId = new SelectList(categoriaServico.ObterCategoriasClassificadasPorNome(), "CategoriaId", "Nome", produto.CategoriaId);
+            ViewBag.FabricanteId = new SelectList(fabricanteServico.ObterFabricantesClassificadosPorNome(), "FabricanteId", "Nome", produto.FabricanteId);
             return View(produto);
         }
         // Metodo Privado
@@ -217,7 +217,7 @@ namespace WebApplication2.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Produto produto = context.Produtos.Where(p => p.ProdutoId == id).Include(c => c.Categoria).Include(f => f.Fabricante).First();
-            Produto produto = produtoServico.ObterProdutoPorId((long) id);
+            Produto produto = produtoServico.ObterProdutoPorId((long)id);
             if (produto == null)
             {
                 return HttpNotFound();
@@ -231,7 +231,7 @@ namespace WebApplication2.Controllers
             try
             {
                 //Produto produto = produtoServico.ObterProdutoPorId((long)id);
-                Produto produto = produtoServico.EliminarProdutoPorId((long) id);
+                Produto produto = produtoServico.EliminarProdutoPorId((long)id);
                 //context.SaveChanges();
                 TempData["Message"] = "Produto " + produto.Nome.ToUpper() + " foi removido";
                 return RedirectToAction("Index");

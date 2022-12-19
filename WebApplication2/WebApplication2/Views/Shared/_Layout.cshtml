@@ -24,13 +24,14 @@
                 <ul class="nav nav-pills nav-stacked">
                     <li id="liHome" role="presentation" class="active"><a href="#">Home</a></li>
                     <li id="liCategorias" role="presentation">
-                        @Html.ActionLink("Categoria", "Index", "Categoria")
+                        @Html.ActionLink("Categoria", "Index", "Categoria", new { Area = "Tabelas" }, null)
+                    
                     </li>
                     <li id="liFabricantes" role="presentation">
-                        @Html.ActionLink("Fabricantes", "Index", "Fabricantes")
+                        @Html.ActionLink("Fabricantes", "Index", "Fabricantes", new { Area = "Cadastros" }, null)
                     </li>
                     <li id="liProdutos" role="presentation">
-                        @Html.ActionLink("Produtos", "Index", "Produtos")
+                        @Html.ActionLink("Produtos", "Index", "Produtos", new { Area = "Cadastros" }, null)
                 </ul>
             </div>
             <div class="col-xs-10 col-md-10">

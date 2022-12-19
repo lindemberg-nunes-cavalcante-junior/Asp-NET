@@ -9,7 +9,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
-namespace WebApplication2.Controllers
+namespace WebApplication2.Areas.Cadastros.Controllers
 {
     public class FabricantesController : Controller
     {
