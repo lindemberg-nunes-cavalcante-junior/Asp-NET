@@ -8,5 +8,6 @@ namespace WebApplication2.Areas.Seguranca.Models
 {
     public class Usuario: IdentityUser
     {
+
     }
 }
