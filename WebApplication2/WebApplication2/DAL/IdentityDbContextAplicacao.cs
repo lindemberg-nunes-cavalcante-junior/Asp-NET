@@ -25,7 +25,7 @@ namespace WebApplication2.DAL
 
         }
 
-        public System.Data.Entity.DbSet<WebApplication2.Areas.Seguranca.Models.Usuario> Usuarios { get; set; }
+        
     }
 }
 
