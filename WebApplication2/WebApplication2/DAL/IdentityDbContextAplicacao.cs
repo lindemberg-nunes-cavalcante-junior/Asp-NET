@@ -24,8 +24,13 @@ namespace WebApplication2.DAL
         {
 
         }
-
+        public static void Delete(IdentityRole a)
+        {
+            IdentityDbContextAplicacao.Delete(a);
+        }
         public System.Data.Entity.DbSet<WebApplication2.Areas.Seguranca.Models.UsuarioViewModel> UsuarioViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication2.Areas.Seguranca.Models.Papel> IdentityRoles { get; set; }
     }
 }
 

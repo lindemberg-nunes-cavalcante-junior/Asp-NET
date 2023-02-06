@@ -1,0 +1,46 @@
+﻿@model WebApplication2.Areas.Seguranca.Models.Papel
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Deletação de um PAPEL";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Papel a ser removido
+        </div>
+        <div class="panel-body">
+            
+            <dl class="form-group">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <a href="#" class="btn btn-info" data-toggle="modal"
+           data-target="#deleteConfirmationModal">Remover</a>
+                    @Html.ActionLink("Back to List", "Index")
+            }
+        </div>
+    </div>
+    
+</body>
+</html>

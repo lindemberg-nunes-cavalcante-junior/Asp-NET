@@ -110,6 +110,38 @@ namespace WebApplication2.Areas.Seguranca.Controllers
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
+        public ActionResult Delete(string id)
+        {
+            Papel papel = RoleManager.FindById(id);
+            //string[] memberIDs = papel.Users.Select(x => x.UserId).ToArray();
+            // Carrega usuários associados e usuários não associados
+            //IEnumerable<Usuario> membros = UserManager.Users.Where
+            //(x => memberIDs.Any(y => y == x.Id));
+            //IEnumerable<Usuario> naoMembros = UserManager.Users.Except(membros);
+            // Chama a visão
+            return View(papel);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Papel papel)
+        {
+            Papel paper = RoleManager.FindById(papel.Id);
+            if (paper != null)
+            {
+                IdentityResult result = RoleManager.Delete(paper);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(
+                    HttpStatusCode.BadRequest);
+                }
+                
+           }
+            return RedirectToAction("index");
+        }
 
     }
 }

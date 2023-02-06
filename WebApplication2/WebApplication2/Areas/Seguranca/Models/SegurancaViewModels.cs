@@ -31,6 +31,11 @@ namespace WebApplication2.Areas.Seguranca.Models
         public IEnumerable<Usuario> Membros { get; set; }
         public IEnumerable<Usuario> NaoMembros { get; set; }
     }
+
+    public class PapelDeleteModel
+    {
+        public Papel Papel { get; set; }
+    }
     public class PapelModificationModel
     {
         [Required]

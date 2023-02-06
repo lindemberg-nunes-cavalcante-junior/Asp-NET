@@ -22,5 +22,6 @@ namespace WebApplication2.Infraestrutura
             return new GerenciadorPapel(new RoleStore<Papel>
             (context.Get<IdentityDbContextAplicacao>()));
         }
+
     }
 }
